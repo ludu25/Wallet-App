@@ -19,12 +19,12 @@ class WalletController extends Controller
         if (!$user->wallet) {
             $user->wallet()->create([
                 'user_id' => $user->id,
-                'balance' => 0
+                'balance' => $request->input('amount')
             ]);
+        } else {
+            $user->wallet->balance = $user->wallet->balance + $request->input('amount');
+            $user->wallet->save();
         }
-
-        $user->wallet->balance = $user->wallet->balance + $request->input('amount');
-        $user->wallet->save();
 
         return redirect()->back()->with('success', 'Carteira recarregada com sucesso!');
     }

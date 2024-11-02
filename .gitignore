@@ -1,5 +1,8 @@
 /.phpunit.cache
 /node_modules
+/composer-lock.json
+/composer.lock
+/package-lock.json
 /public/build
 /public/hot
 /public/storage
