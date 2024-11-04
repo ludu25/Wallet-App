@@ -10,8 +10,8 @@ EXPOSE 10000
 
 COPY . .
 
-# Install Nginx
 RUN apt-get update && apt-get install -y nginx
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Configure Nginx and PHP-FPM
 COPY conf/nginx/nginx-site.conf /etc/nginx/sites-available/default
