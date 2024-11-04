@@ -21,4 +21,5 @@ COPY scripts/00-laravel-deploy.sh /scripts/00-laravel-deploy.sh
 RUN chmod +x /scripts/00-laravel-deploy.sh
 RUN /scripts/00-laravel-deploy.sh
 
-CMD ["/scripts/00-laravel-deploy.sh", "&&", "/start.sh"]
+# CMD ["/scripts/00-laravel-deploy.sh", "&&", "/start.sh"]
+CMD ["/bin/sh", "-c", "/scripts/00-laravel-deploy.sh && /usr/sbin/nginx && php-fpm"]
