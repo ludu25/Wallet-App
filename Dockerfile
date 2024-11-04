@@ -6,6 +6,8 @@ RUN docker-php-ext-install pdo pdo_mysql
 # Set the working directory
 WORKDIR /var/www/html
 
+EXPOSE 10000
+
 COPY . .
 
 # Install Nginx
