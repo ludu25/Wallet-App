@@ -15,8 +15,10 @@ RUN apt-get update && apt-get install -y nginx
 
 # Configure Nginx and PHP-FPM
 COPY conf/nginx/nginx-site.conf /etc/nginx/sites-available/default
-
 RUN echo "listen = 0.0.0.0:9000" >> /usr/local/etc/php-fpm.d/www.conf
 
-# Start Nginx and PHP-FPM
-CMD service nginx start && php-fpm
+COPY scripts/00-laravel-deploy.sh /scripts/00-laravel-deploy.sh
+RUN chmod +x /scripts/00-laravel-deploy.sh
+RUN /scripts/00-laravel-deploy.sh
+
+CMD ["/scripts/00-laravel-deploy.sh", "&&", "/start.sh"]
