@@ -5,6 +5,9 @@ WORKDIR /var/www/html
 
 COPY . .
 
+# Copia o arquivo do supervisor para o contêiner
+COPY conf/supervisor/laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
+
 # Image config
 ENV SKIP_COMPOSER 1
 ENV WEBROOT /var/www/html/public
