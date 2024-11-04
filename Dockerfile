@@ -12,7 +12,7 @@ COPY . .
 RUN apt-get update && apt-get install -y nginx
 
 # Configure Nginx and PHP-FPM
-COPY nginx.conf /etc/nginx/sites-available/default
+COPY conf/nginx/nginx-site.conf /etc/nginx/sites-available/default
 
 # Start Nginx and PHP-FPM
 CMD service nginx start && php-fpm
