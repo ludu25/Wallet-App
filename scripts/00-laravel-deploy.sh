@@ -2,11 +2,11 @@
 
 echo "Running composer"
 
-composer install --optimize-autoloader --no-dev --working-dir=/var/www/html
+composer install --optimize-autoloader --no-dev --working-dir=/var/www/html || { echo "Composer failed"; exit 1; }
 
 # Verificar se o diretório vendor foi criado
-if [ ! -d "vendor" ]; then
-    echo "Diretório 'vendor' não encontrado. Verifique se o Composer está instalado corretamente."
+if [ -d "vendor" ]; then
+    echo "Diretório 'vendor' existe."
     exit 1
 fi
 
@@ -25,3 +25,4 @@ php artisan migrate --force
 # Mudar permissões, se necessário
 chown -R www-data:www-data /var/www/html
 chmod -R 755 /var/www/html
+chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
